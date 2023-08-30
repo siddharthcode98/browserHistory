@@ -1,5 +1,7 @@
 import { Component } from "react";
+
 import "./index.css";
+
 import HistoryItem from "../HistoryItem";
 
 const initialHistoryList = [
@@ -78,10 +80,13 @@ const initialHistoryList = [
 ];
 
 class BrowserHistory extends Component {
+  
   state = { searchInput: "", userHistoryList: initialHistoryList };
+
   userInput = (event) => {
     this.setState({ searchInput: event.target.value });
   };
+  
   deleteListItem = (id) => {
     const { userHistoryList } = this.state;
     const updatedHistoryList = userHistoryList.filter((eachItem) => {
@@ -89,12 +94,15 @@ class BrowserHistory extends Component {
     });
     this.setState({ userHistoryList: updatedHistoryList });
   };
+  
   render() {
     const { searchInput, userHistoryList } = this.state;
+    
     const filteredList = userHistoryList.filter((eachItem) => {
       return eachItem.title.toLowerCase().includes(searchInput.toLowerCase());
     });
     const noResult = filteredList.length;
+    
     return (
       <div>
         <div className="navBarContainer">
@@ -137,4 +145,5 @@ class BrowserHistory extends Component {
     );
   }
 }
+
 export default BrowserHistory;
